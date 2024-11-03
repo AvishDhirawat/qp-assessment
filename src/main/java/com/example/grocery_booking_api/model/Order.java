@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 
 @Entity
@@ -30,8 +31,6 @@ public class Order {
     @NotNull(message = "Total price is mandatory")
     @Min(value = 0, message = "Total price cannot be negative")
     private Double totalPrice;
-
-    // Getters and Setters
 
     public Long getId() {
         return id;

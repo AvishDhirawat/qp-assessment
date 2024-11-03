@@ -13,23 +13,14 @@ public class AdminService {
     @Autowired
     private GroceryItemRepository groceryItemRepository;
 
-    /**
-     * Add a new grocery item to the inventory.
-     */
-    public GroceryItem addGroceryItem(GroceryItem item) {
-        return groceryItemRepository.save(item);
+    public List<GroceryItem> addGroceryItem(List<GroceryItem> items) {
+        return groceryItemRepository.saveAll(items);
     }
 
-    /**
-     * Get a list of all grocery items.
-     */
     public List<GroceryItem> getAllGroceryItems() {
         return groceryItemRepository.findAll();
     }
 
-    /**
-     * Update details of an existing grocery item.
-     */
     public GroceryItem updateGroceryItem(Long itemId, GroceryItem updatedItem) {
         GroceryItem item = groceryItemRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));
@@ -40,11 +31,6 @@ public class AdminService {
         return groceryItemRepository.save(item);
     }
 
-    /**
-     * Remove a grocery item by ID.
-     *
-     * @return
-     */
     public String deleteGroceryItem(Long itemId) {
         GroceryItem item = groceryItemRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));
@@ -52,9 +38,6 @@ public class AdminService {
         return item.getName() + "was deleted";
     }
 
-    /**
-     * Update the inventory level for a grocery item.
-     */
     public GroceryItem updateInventory(Long itemId, int newQuantity) {
         GroceryItem item = groceryItemRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));

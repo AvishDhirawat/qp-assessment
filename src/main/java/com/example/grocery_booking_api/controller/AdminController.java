@@ -16,10 +16,10 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @PostMapping("/add-item")
-    public ResponseEntity<GroceryItem> addItem(@RequestBody GroceryItem item) {
-        GroceryItem savedItem = adminService.addGroceryItem(item);
-        return ResponseEntity.ok(savedItem);
+    @PostMapping("/add-items")
+    public ResponseEntity<List<GroceryItem>> addGroceryItem(@RequestBody List<GroceryItem> items) {
+        List<GroceryItem> savedItems = adminService.addGroceryItem(items);
+        return ResponseEntity.ok(savedItems);
     }
 
     @GetMapping("/items")

@@ -30,7 +30,6 @@ public class GroceryItem {
     @Min(value = 0, message = "Inventory quantity must be zero or more")
     private Integer inventoryQuantity;
 
-    // Getters and Setters
 
     public Long getId() {
         return id;
