@@ -1,5 +1,6 @@
 package com.example.grocery_booking_api.controller;
 
+import com.example.grocery_booking_api.dto.InventoryUpdateResponse;
 import com.example.grocery_booking_api.model.GroceryItem;
 import com.example.grocery_booking_api.service.AdminService;
 
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -38,10 +40,17 @@ public class AdminController {
         return ResponseEntity.ok(updatedItem);
     }
 
+//    @PutMapping("/manage-inventory/{id}/{quantity}")
+//    public ResponseEntity<Map<String, Object>> manageInventory(@PathVariable Long id, @PathVariable int quantity) {
+//        Map<String, Object> response = adminService.updateInventory(id, quantity);
+//        return ResponseEntity.ok(response);
+//    }
+
+
     @PutMapping("/manage-inventory/{id}/{quantity}")
-    public ResponseEntity<Void> manageInventory(@PathVariable Long id, @PathVariable int quantity) {
-        adminService.updateInventory(id, quantity);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<InventoryUpdateResponse> manageInventory(@PathVariable Long id, @PathVariable int quantity) {
+        InventoryUpdateResponse response = adminService.updateInventory(id, quantity);
+        return ResponseEntity.ok(response);
     }
 }
 
